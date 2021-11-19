@@ -12,3 +12,5 @@ vi db.yaml
 ```Shell
 ansible-playbook -i inventory -v db.yaml --ask-vault-pass
 ```
+
+Lien vers le dossier [corrections](../Correction)
