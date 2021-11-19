@@ -1,0 +1,22 @@
+---
+- hosts: back
+  
+  pre_tasks:
+  - name: Install pymysql package
+    become: true
+    ansible.builtin.dnf:
+      name: python3-PyMySQL
+  
+  tasks:
+  
+  - name: Load mysql vars
+    ansible.builtin.include_vars: mysql.yaml
+    no_log: true
+  
+  - name: create remote mysql user
+    community.mysql.mysql_user:
+      login_unix_socket: /var/lib/mysql/mysql.sock
+      login_user: root
+      login_password: "{{ new_pass }}"
+      user: ansible
+      host: "*"
